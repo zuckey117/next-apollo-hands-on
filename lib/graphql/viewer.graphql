@@ -1,9 +1,13 @@
 query getViewer {
   viewer {
+    id
+    login
     name
-    repositories(last: 3) {
+    repositories(last: 5, privacy: PUBLIC) {
       nodes {
+        id
         name
+        url
       }
     }
   }

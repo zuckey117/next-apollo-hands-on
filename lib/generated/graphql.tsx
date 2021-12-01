@@ -23176,16 +23176,20 @@ export type WorkflowRunPendingDeploymentRequestsArgs = {
 export type GetViewerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetViewerQuery = { __typename?: 'Query', viewer: { __typename?: 'User', name?: string | null | undefined, repositories: { __typename?: 'RepositoryConnection', nodes?: Array<{ __typename?: 'Repository', name: string } | null | undefined> | null | undefined } } };
+export type GetViewerQuery = { __typename?: 'Query', viewer: { __typename?: 'User', id: string, login: string, name?: string | null | undefined, repositories: { __typename?: 'RepositoryConnection', nodes?: Array<{ __typename?: 'Repository', id: string, name: string, url: any } | null | undefined> | null | undefined } } };
 
 
 export const GetViewerDocument = gql`
     query getViewer {
   viewer {
+    id
+    login
     name
-    repositories(last: 3) {
+    repositories(last: 5, privacy: PUBLIC) {
       nodes {
+        id
         name
+        url
       }
     }
   }
