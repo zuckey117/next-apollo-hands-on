@@ -21,7 +21,7 @@ const Repositories = () => {
           }}
         />
       </label>
-      
+
       {loading ? (
         <h2>読込中.....</h2>
       ) : (
@@ -32,9 +32,11 @@ const Repositories = () => {
               // GraphQLのUnion型の型がうまくTSの型に変換されなかったので苦肉のas....ごめんなさい...
               const repository = node as Repository
               return (
-                <a key={repository.id} href={repository.url}>
-                  <p>{repository.url}</p>
-                </a>
+                <>
+                  <a key={repository.id} href={repository.url}>
+                    <p><button>{repository.viewerHasStarred? '★': '☆'}</button>{repository.url}</p>
+                  </a>
+                </>
               )
             })}
           </div>
