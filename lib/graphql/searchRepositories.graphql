@@ -5,6 +5,7 @@ query searchRepositories($keyword: String!) {
         id
         name
         url
+        viewerHasStarred
       }
     }
   }
