@@ -23180,6 +23180,13 @@ export type CreateRepositoryMutationVariables = Exact<{
 
 export type CreateRepositoryMutation = { __typename?: 'Mutation', createRepository?: { __typename?: 'CreateRepositoryPayload', repository?: { __typename?: 'Repository', id: string, name: string, url: any } | null | undefined } | null | undefined };
 
+export type SearchRepositoriesQueryVariables = Exact<{
+  keyword: Scalars['String'];
+}>;
+
+
+export type SearchRepositoriesQuery = { __typename?: 'Query', search: { __typename?: 'SearchResultItemConnection', nodes?: Array<{ __typename?: 'App' } | { __typename?: 'Discussion' } | { __typename?: 'Issue' } | { __typename?: 'MarketplaceListing' } | { __typename?: 'Organization' } | { __typename?: 'PullRequest' } | { __typename?: 'Repository', id: string, name: string, url: any } | { __typename?: 'User' } | null | undefined> | null | undefined } };
+
 export type GetViewerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -23223,6 +23230,47 @@ export function useCreateRepositoryMutation(baseOptions?: Apollo.MutationHookOpt
 export type CreateRepositoryMutationHookResult = ReturnType<typeof useCreateRepositoryMutation>;
 export type CreateRepositoryMutationResult = Apollo.MutationResult<CreateRepositoryMutation>;
 export type CreateRepositoryMutationOptions = Apollo.BaseMutationOptions<CreateRepositoryMutation, CreateRepositoryMutationVariables>;
+export const SearchRepositoriesDocument = gql`
+    query searchRepositories($keyword: String!) {
+  search(type: REPOSITORY, query: $keyword, first: 10) {
+    nodes {
+      ... on Repository {
+        id
+        name
+        url
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useSearchRepositoriesQuery__
+ *
+ * To run a query within a React component, call `useSearchRepositoriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchRepositoriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchRepositoriesQuery({
+ *   variables: {
+ *      keyword: // value for 'keyword'
+ *   },
+ * });
+ */
+export function useSearchRepositoriesQuery(baseOptions: Apollo.QueryHookOptions<SearchRepositoriesQuery, SearchRepositoriesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SearchRepositoriesQuery, SearchRepositoriesQueryVariables>(SearchRepositoriesDocument, options);
+      }
+export function useSearchRepositoriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SearchRepositoriesQuery, SearchRepositoriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SearchRepositoriesQuery, SearchRepositoriesQueryVariables>(SearchRepositoriesDocument, options);
+        }
+export type SearchRepositoriesQueryHookResult = ReturnType<typeof useSearchRepositoriesQuery>;
+export type SearchRepositoriesLazyQueryHookResult = ReturnType<typeof useSearchRepositoriesLazyQuery>;
+export type SearchRepositoriesQueryResult = Apollo.QueryResult<SearchRepositoriesQuery, SearchRepositoriesQueryVariables>;
 export const GetViewerDocument = gql`
     query getViewer {
   viewer {
