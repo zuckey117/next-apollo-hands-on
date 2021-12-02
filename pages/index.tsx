@@ -4,6 +4,9 @@ import { useGetViewerQuery } from '../lib/generated/graphql'
 
 const Home: NextPage = () => {
   const { loading, error, data } = useGetViewerQuery()
+  if(error) {
+    return <p>{error.message}</p>
+  }
   return (
     <div className={styles.container}>
       <main className={styles.main}>
