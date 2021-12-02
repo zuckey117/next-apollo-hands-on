@@ -23173,12 +23173,56 @@ export type WorkflowRunPendingDeploymentRequestsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+export type CreateRepositoryMutationVariables = Exact<{
+  input: CreateRepositoryInput;
+}>;
+
+
+export type CreateRepositoryMutation = { __typename?: 'Mutation', createRepository?: { __typename?: 'CreateRepositoryPayload', repository?: { __typename?: 'Repository', id: string, name: string, url: any } | null | undefined } | null | undefined };
+
 export type GetViewerQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetViewerQuery = { __typename?: 'Query', viewer: { __typename?: 'User', id: string, login: string, name?: string | null | undefined, repositories: { __typename?: 'RepositoryConnection', nodes?: Array<{ __typename?: 'Repository', id: string, name: string, url: any } | null | undefined> | null | undefined } } };
 
 
+export const CreateRepositoryDocument = gql`
+    mutation createRepository($input: CreateRepositoryInput!) {
+  createRepository(input: $input) {
+    repository {
+      id
+      name
+      url
+    }
+  }
+}
+    `;
+export type CreateRepositoryMutationFn = Apollo.MutationFunction<CreateRepositoryMutation, CreateRepositoryMutationVariables>;
+
+/**
+ * __useCreateRepositoryMutation__
+ *
+ * To run a mutation, you first call `useCreateRepositoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateRepositoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createRepositoryMutation, { data, loading, error }] = useCreateRepositoryMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreateRepositoryMutation(baseOptions?: Apollo.MutationHookOptions<CreateRepositoryMutation, CreateRepositoryMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateRepositoryMutation, CreateRepositoryMutationVariables>(CreateRepositoryDocument, options);
+      }
+export type CreateRepositoryMutationHookResult = ReturnType<typeof useCreateRepositoryMutation>;
+export type CreateRepositoryMutationResult = Apollo.MutationResult<CreateRepositoryMutation>;
+export type CreateRepositoryMutationOptions = Apollo.BaseMutationOptions<CreateRepositoryMutation, CreateRepositoryMutationVariables>;
 export const GetViewerDocument = gql`
     query getViewer {
   viewer {
