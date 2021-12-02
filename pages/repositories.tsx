@@ -1,10 +1,16 @@
 import { useState } from 'react'
-import { useSearchRepositoriesQuery, Repository } from '../lib/generated/graphql'
+import {
+  useSearchRepositoriesQuery,
+  Repository,
+  useAddStarMutation,
+  SearchRepositoriesDocument,
+} from '../lib/generated/graphql'
 
 const Repositories = () => {
   const [keyword, setKeyword] = useState('')
 
   const { loading, error, data } = useSearchRepositoriesQuery({ variables: { keyword } })
+  const [addStar] = useAddStarMutation()
   if (error) {
     return <p>{error.message}</p>
   }
@@ -34,7 +40,26 @@ const Repositories = () => {
               return (
                 <>
                   <a key={repository.id} href={repository.url}>
-                    <p><button>{repository.viewerHasStarred? '★': '☆'}</button>{repository.url}</p>
+                    <p>
+                      <button
+                        onClick={(event) => {
+                          event.preventDefault()
+                          try {
+                            addStar({
+                              variables: {
+                                input: { starrableId: repository.id },
+                              },
+                              refetchQueries: [SearchRepositoriesDocument],
+                            })
+                          } catch (error) {
+                            console.log(error)
+                          }
+                        }}
+                      >
+                        {repository.viewerHasStarred ? '★' : '☆'}
+                      </button>
+                      {repository.url}
+                    </p>
                   </a>
                 </>
               )
