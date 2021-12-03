@@ -23173,6 +23173,13 @@ export type WorkflowRunPendingDeploymentRequestsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+export type AddStarMutationVariables = Exact<{
+  input: AddStarInput;
+}>;
+
+
+export type AddStarMutation = { __typename?: 'Mutation', addStar?: { __typename?: 'AddStarPayload', starrable?: { __typename?: 'Gist', id: string, viewerHasStarred: boolean } | { __typename?: 'Repository', id: string, viewerHasStarred: boolean } | { __typename?: 'Topic', id: string, viewerHasStarred: boolean } | null | undefined } | null | undefined };
+
 export type CreateRepositoryMutationVariables = Exact<{
   input: CreateRepositoryInput;
 }>;
@@ -23185,7 +23192,7 @@ export type SearchRepositoriesQueryVariables = Exact<{
 }>;
 
 
-export type SearchRepositoriesQuery = { __typename?: 'Query', search: { __typename?: 'SearchResultItemConnection', nodes?: Array<{ __typename?: 'App' } | { __typename?: 'Discussion' } | { __typename?: 'Issue' } | { __typename?: 'MarketplaceListing' } | { __typename?: 'Organization' } | { __typename?: 'PullRequest' } | { __typename?: 'Repository', id: string, name: string, url: any } | { __typename?: 'User' } | null | undefined> | null | undefined } };
+export type SearchRepositoriesQuery = { __typename?: 'Query', search: { __typename?: 'SearchResultItemConnection', nodes?: Array<{ __typename?: 'App' } | { __typename?: 'Discussion' } | { __typename?: 'Issue' } | { __typename?: 'MarketplaceListing' } | { __typename?: 'Organization' } | { __typename?: 'PullRequest' } | { __typename?: 'Repository', id: string, name: string, url: any, viewerHasStarred: boolean } | { __typename?: 'User' } | null | undefined> | null | undefined } };
 
 export type GetViewerQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -23193,6 +23200,42 @@ export type GetViewerQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetViewerQuery = { __typename?: 'Query', viewer: { __typename?: 'User', id: string, login: string, name?: string | null | undefined, repositories: { __typename?: 'RepositoryConnection', nodes?: Array<{ __typename?: 'Repository', id: string, name: string, url: any } | null | undefined> | null | undefined } } };
 
 
+export const AddStarDocument = gql`
+    mutation addStar($input: AddStarInput!) {
+  addStar(input: $input) {
+    starrable {
+      id
+      viewerHasStarred
+    }
+  }
+}
+    `;
+export type AddStarMutationFn = Apollo.MutationFunction<AddStarMutation, AddStarMutationVariables>;
+
+/**
+ * __useAddStarMutation__
+ *
+ * To run a mutation, you first call `useAddStarMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddStarMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addStarMutation, { data, loading, error }] = useAddStarMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useAddStarMutation(baseOptions?: Apollo.MutationHookOptions<AddStarMutation, AddStarMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddStarMutation, AddStarMutationVariables>(AddStarDocument, options);
+      }
+export type AddStarMutationHookResult = ReturnType<typeof useAddStarMutation>;
+export type AddStarMutationResult = Apollo.MutationResult<AddStarMutation>;
+export type AddStarMutationOptions = Apollo.BaseMutationOptions<AddStarMutation, AddStarMutationVariables>;
 export const CreateRepositoryDocument = gql`
     mutation createRepository($input: CreateRepositoryInput!) {
   createRepository(input: $input) {
@@ -23238,6 +23281,7 @@ export const SearchRepositoriesDocument = gql`
         id
         name
         url
+        viewerHasStarred
       }
     }
   }
