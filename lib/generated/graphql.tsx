@@ -23187,6 +23187,13 @@ export type CreateRepositoryMutationVariables = Exact<{
 
 export type CreateRepositoryMutation = { __typename?: 'Mutation', createRepository?: { __typename?: 'CreateRepositoryPayload', repository?: { __typename?: 'Repository', id: string, name: string, url: any } | null | undefined } | null | undefined };
 
+export type RemoveStarMutationVariables = Exact<{
+  input: RemoveStarInput;
+}>;
+
+
+export type RemoveStarMutation = { __typename?: 'Mutation', removeStar?: { __typename?: 'RemoveStarPayload', starrable?: { __typename?: 'Gist', id: string, viewerHasStarred: boolean } | { __typename?: 'Repository', id: string, viewerHasStarred: boolean } | { __typename?: 'Topic', id: string, viewerHasStarred: boolean } | null | undefined } | null | undefined };
+
 export type SearchRepositoriesQueryVariables = Exact<{
   keyword: Scalars['String'];
 }>;
@@ -23273,6 +23280,42 @@ export function useCreateRepositoryMutation(baseOptions?: Apollo.MutationHookOpt
 export type CreateRepositoryMutationHookResult = ReturnType<typeof useCreateRepositoryMutation>;
 export type CreateRepositoryMutationResult = Apollo.MutationResult<CreateRepositoryMutation>;
 export type CreateRepositoryMutationOptions = Apollo.BaseMutationOptions<CreateRepositoryMutation, CreateRepositoryMutationVariables>;
+export const RemoveStarDocument = gql`
+    mutation removeStar($input: RemoveStarInput!) {
+  removeStar(input: $input) {
+    starrable {
+      id
+      viewerHasStarred
+    }
+  }
+}
+    `;
+export type RemoveStarMutationFn = Apollo.MutationFunction<RemoveStarMutation, RemoveStarMutationVariables>;
+
+/**
+ * __useRemoveStarMutation__
+ *
+ * To run a mutation, you first call `useRemoveStarMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveStarMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeStarMutation, { data, loading, error }] = useRemoveStarMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useRemoveStarMutation(baseOptions?: Apollo.MutationHookOptions<RemoveStarMutation, RemoveStarMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveStarMutation, RemoveStarMutationVariables>(RemoveStarDocument, options);
+      }
+export type RemoveStarMutationHookResult = ReturnType<typeof useRemoveStarMutation>;
+export type RemoveStarMutationResult = Apollo.MutationResult<RemoveStarMutation>;
+export type RemoveStarMutationOptions = Apollo.BaseMutationOptions<RemoveStarMutation, RemoveStarMutationVariables>;
 export const SearchRepositoriesDocument = gql`
     query searchRepositories($keyword: String!) {
   search(type: REPOSITORY, query: $keyword, first: 10) {

@@ -1,0 +1,8 @@
+mutation removeStar($input: RemoveStarInput!) {
+  removeStar(input: $input) {
+    starrable {
+      id
+      viewerHasStarred
+    }
+  }
+}
