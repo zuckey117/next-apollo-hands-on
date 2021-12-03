@@ -38,9 +38,26 @@ const Repositories = () => {
               // GraphQLのUnion型の型がうまくTSの型に変換されなかったので苦肉のas....ごめんなさい...
               const repository = node as Repository
               return (
-                <a key={repository.id} href={repository.url}>
-                  <p><button>{repository.viewerHasStarred? '★': '☆'}</button>{repository.url}</p>
-                </a>
+                <p>
+                  <button
+                  onClick={(event) => {
+                    event.preventDefault()
+                    try {
+                      addStar({
+                        variables: {
+                          input: { starrableId: repository.id },
+                        },
+                        refetchQueries: [SearchRepositoriesDocument],
+                      })
+                    } catch (error) {
+                      console.log(error)
+                    }
+                  }}
+                  >
+                    {repository.viewerHasStarred ? '★' : '☆'}
+                    </button>
+                    {repository.url}
+                </p>
               )
             })}
           </div>
