@@ -1,10 +1,16 @@
 import { useState } from 'react'
-import { useSearchRepositoriesQuery, Repository } from '../lib/generated/graphql'
+import {
+  useSearchRepositoriesQuery,
+  Repository,
+  useAddStarMutation,
+  SearchRepositoriesDocument,
+} from '../lib/generated/graphql'
 
 const Repositories = () => {
   const [keyword, setKeyword] = useState('')
 
   const { loading, error, data } = useSearchRepositoriesQuery({ variables: { keyword } })
+  const [addStar] = useAddStarMutation()
   if (error) {
     return <p>{error.message}</p>
   }
