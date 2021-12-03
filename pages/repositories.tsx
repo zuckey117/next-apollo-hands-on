@@ -39,7 +39,7 @@ const Repositories = () => {
               const repository = node as Repository
               return (
                 <a key={repository.id} href={repository.url}>
-                  <p>{repository.url}</p>
+                  <p><button>{repository.viewerHasStarred? '★': '☆'}</button>{repository.url}</p>
                 </a>
               )
             })}
