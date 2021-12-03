@@ -3,6 +3,7 @@ import {
   useSearchRepositoriesQuery,
   Repository,
   useAddStarMutation,
+  useRemoveStarMutation,
   SearchRepositoriesDocument,
 } from '../lib/generated/graphql'
 
@@ -11,6 +12,7 @@ const Repositories = () => {
 
   const { loading, error, data } = useSearchRepositoriesQuery({ variables: { keyword } })
   const [addStar] = useAddStarMutation()
+  const [removeStar] = useRemoveStarMutation()
   if (error) {
     return <p>{error.message}</p>
   }
@@ -44,6 +46,12 @@ const Repositories = () => {
                     event.preventDefault()
                     try {
                       addStar({
+                        variables: {
+                          input: { starrableId: repository.id },
+                        },
+                        refetchQueries: [SearchRepositoriesDocument],
+                      })
+                      removeStar({
                         variables: {
                           input: { starrableId: repository.id },
                         },
