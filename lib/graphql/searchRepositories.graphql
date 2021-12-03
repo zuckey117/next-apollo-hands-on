@@ -1,0 +1,11 @@
+query searchRepositories($keyword: String!) {
+  search(type: REPOSITORY, query: $keyword, first: 10) {
+    nodes {
+      ... on Repository {
+        id
+        name
+        url
+      }
+    }
+  }
+}
