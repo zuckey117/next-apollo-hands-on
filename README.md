@@ -9,10 +9,12 @@
 
 ```bash
 yarn install
+```
 
 - GitHubのPersonal Access Tokenを作成してトークンをコピーしておいてください。
-```
-次にenv.local.sampleをコピーしNEXT_PUBLIC_GITHUB_TOKENに先程のトークンを貼り付けます。
+    - 権限はrepoがあればOKです。
+
+- 次にenv.local.sampleをコピーしNEXT_PUBLIC_GITHUB_TOKENに先程のトークンを貼り付けます。
 ```bash
 cp .env.local.sample .env.local
 ```
