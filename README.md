@@ -31,3 +31,6 @@ yarn dev
     ```bash
         yarn generate
     ``` 
+
+## ハンズオン
+- 資料は[こちら](/HANDSON.md)です。
