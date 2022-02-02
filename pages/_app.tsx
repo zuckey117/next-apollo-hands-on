@@ -1,19 +1,13 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
+import { ApolloProvider } from '@apollo/client'
+import { getApolloClient } from '../lib/apollo'
 
 import '../styles/globals.css'
 
-const client = new ApolloClient({
-  uri: 'https://api.github.com/graphql',
-  headers: {
-    Authorization: `bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}` || '',
-  },
-  ssrMode: typeof window === 'undefined',
-  cache: new InMemoryCache(),
-})
 function MyApp({ Component, pageProps }: AppProps) {
+  const client = getApolloClient()
   return (
     <>
       <Head>

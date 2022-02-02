@@ -7,9 +7,9 @@ import {
 } from '../lib/generated/graphql'
 
 const Repositories = () => {
-  const [keyword, setKeyword] = useState('')
+  const [keyword, setKeyword] = useState('react')
 
-  const { loading, error, data } = useSearchRepositoriesQuery({ variables: { keyword } })
+  const { loading, error, data } = useSearchRepositoriesQuery({ variables: { keyword } , ssr: true})
   const [addStar] = useAddStarMutation()
   if (error) {
     return <p>{error.message}</p>
@@ -49,7 +49,7 @@ const Repositories = () => {
                               variables: {
                                 input: { starrableId: repository.id },
                               },
-                              refetchQueries: [SearchRepositoriesDocument],
+                              // refetchQueries: [SearchRepositoriesDocument],
                             })
                           } catch (error) {
                             console.log(error)
