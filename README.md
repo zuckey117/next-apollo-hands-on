@@ -33,4 +33,4 @@ yarn dev
     ``` 
 
 ## ハンズオン
-- 資料は[こちら](/HANDSON.md)です。
+- [Next.js, Apollo Client概要](/NEXT-APOLLO-SUMMARY.md)
