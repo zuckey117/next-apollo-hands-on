@@ -1,12 +1,12 @@
 import type { NextPage } from 'next'
 import { useState } from 'react'
-import styles from '../styles/Home.module.css'
+import styles from '../../styles/Home.module.css'
 import {
   useGetViewerQuery,
   useCreateRepositoryMutation,
   RepositoryVisibility,
   GetViewerDocument,
-} from '../lib/generated/graphql'
+} from '../../lib/generated/graphql'
 
 const Home: NextPage = () => {
   const [repositoryName, setRepositoryName] = useState('')
