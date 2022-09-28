@@ -703,16 +703,3 @@ React のフレームワークなので基本的には React が分かればお�
 - これでボタンをクリックしたリポジトリにスターを付けることができます。
 - ハンズオンは以上です。サクサク進んで時間が余った人は`removeStar` mutation を用いたスターの削除も実装してみましょう！
 
-## 事前準備
-
-- node.js のインストールをお願いします。
-  - 複数のリポジトリの開発を行う場合、要求される node のバージョンが異なることが多いため、nodenv を用いたインストールを強く推奨します。
-    [nodenv の環境構築 - Qiita](https://qiita.com/282Haniwa/items/a764cf7ef03939e4cbb1)
-    - rbenv など複数の〇〇 env を使ってる場合は anyenv 経由でのインストールがおすすめです。
-  - node14 以降が手元に入っている場合今回はスキップでも OK です。
-  - node.js なんか普段使わんし知らんわ！という方はインストーラーを使っても大丈夫です。
-    [ダウンロード | Node.js](https://nodejs.org/ja/download/)
-- node を入れたら`npm install -g yarn` で yarn をインストールしてください。
-- 不明点があればサポートするので@zuckey までメンションしてください。
-- https://github.com/zuckey117/next-apollo-hands-on をクローンしておいてください。準備は以上です。
-

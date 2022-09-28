@@ -38,6 +38,19 @@ yarn dev
 - [Next.js](/NEXT.md)
     - React Hooksや、SSR, SSGなど普段Next.jsで軽微な修正はやっていて、新規ページの実装は不安くらいのレベル感の人を対象にしたハンズオンです。
 
+### 事前準備
+
+- node.js のインストールをお願いします。
+  - 複数のリポジトリの開発を行う場合、要求される node のバージョンが異なることが多いため、nodenv を用いたインストールを強く推奨します。
+    [nodenv の環境構築 - Qiita](https://qiita.com/282Haniwa/items/a764cf7ef03939e4cbb1)
+    - rbenv など複数の〇〇 env を使ってる場合は anyenv 経由でのインストールがおすすめです。
+  - node16 以降が手元に入っている場合今回はスキップでも OK です。
+  - node.js なんか普段使わんし知らんわ！という方はインストーラーを使っても大丈夫です。
+    [ダウンロード | Node.js](https://nodejs.org/ja/download/)
+- node を入れたら`npm install -g yarn` で yarn をインストールしてください。
+- https://github.com/zuckey117/next-apollo-hands-on をクローンしておいてください。準備は以上です。
+
+
 
 # おすすめ資料・便利ツール
 
