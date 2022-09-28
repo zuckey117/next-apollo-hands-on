@@ -34,6 +34,10 @@ yarn dev
 
 ## ハンズオン
 - [Next.js, Apollo Client概要](/NEXT-APOLLO-SUMMARY.md)
+    - Next.js, Apollo Clientについての概要や、その前段となるTypeScriptなどについての講義などフロントエンドの開発経験があまりない人を対象にしたハンズオンです。
+- [Next.js](/NEXT.md)
+    - React Hooksや、SSR, SSGなど普段Next.jsで軽微な修正はやっていて、新規ページの実装は不安くらいのレベル感の人を対象にしたハンズオンです。
+
 
 # おすすめ資料・便利ツール
 
