@@ -342,6 +342,7 @@ export default UseEffect
     pages/next-hands-on/ssr.tsx
     
     import { FC } from 'react'
+    import { GetServerSideProps } from 'next'
     
     type Props = {
       postCode: string
@@ -350,14 +351,13 @@ export default UseEffect
     const Ssr: FC<Props> = ({ postCode, address }) => {
       return (
         <>
-          <div>useEffect hands on</div>
           <p>郵便番号: {postCode}</p>
           <p>住所: {address}</p>
         </>
       )
     }
     
-    export const getServerSideProps = async () => {
+    export const getServerSideProps: GetServerSideProps<Props> = async () => {
       console.log('getServerSideProps is called only server side.')
       const postCode = '1066190'
       const res = await fetch(`https://zipcloud.ibsnet.co.jp/api/search?zipcode=${postCode}`)
