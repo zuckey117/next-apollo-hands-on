@@ -112,6 +112,14 @@
 - 他の hooks などを知りたい人はこちらの記事の解説がわかりやすいです。
     - [React hooksを基礎から理解する](https://qiita.com/seira/items/f063e262b1d57d7e78b4)
 
+- ※React18からStrictMode(開発中のみ有効)でuseEffectなどの挙動が変わっているので注意が必要です。
+  - 具体的には関数コンポーネントの関数自体や、一部のhooksが開発環境でのみ2回実行されます。(本番環境への影響はありません)
+  - したがって各種Hooksは冪等性のある実装が求められます。
+  - React17まででクライアントで一度だけ実行していたAPIコールなどは必要に応じて、[useRefとuseEffectを併用した実装](https://github.com/reactwg/react-18/discussions/18#discussion-3385714)や[react-useのuseEffectOnce](https://github.com/streamich/react-use/blob/master/docs/useEffectOnce.md)の導入を検討しましょう。
+  - 詳しくは下記などを参照してください。
+    - [strict モード - React](https://ja.reactjs.org/docs/strict-mode.html)
+    - [React18でのStrictモードとuseEffectの挙動](https://www.sunapro.com/react18-strict-mode/)
+
 ## Next.js
 
 React のフレームワークなので基本的には React が分かればおおよそは書けますが、Next.js 特有な部分について解説していきます。
@@ -144,7 +152,7 @@ React のフレームワークなので基本的には React が分かればお�
 - **CSR(Client Side Rendering)**
     - ブラウザでJavaScriptが実行されて画面が描画されます。クライアントの性能に大きく影響を受けます。
     - SEOに関してはクローラーがちゃんと読んでくれないと言われていました。(現在は基本的に問題ないです)
-        - SNSなどのOGP表示は未だに問題があるはず..…
+        - SNSなどのOGP表示は未だに問題があるはず……
 - **SSR(Server Side Rendering)**
     - サーバサイドでAPIなどのコールを行いレンダリング済みのHTMLをブラウザに返します。
     - Next.jsでは`getServerSideProps` を用いて実装します。
@@ -229,13 +237,14 @@ React のフレームワークなので基本的には React が分かればお�
         }
         ```
         
+    - Next v12.2.0 で導入された [On-demand Revalidation](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration#on-demand-revalidation) を用いることで、CMSでの更新時などにWebhookを用いてAPIを叩くことでHTMLを再構築することもできるようになりました。
 
 # ハンズオン編
 
 - まずは README に従って環境を立ち上げて見ましょう。
 - 今回のハンズオンではhooksや各種レンダリング手法の動作を実際に手を動かしながら学びます。
     - 一連の流れは PR にしていますので変更内容がわからなくなった場合はコミットログを見てみてください。
-        - [https://github.com/zuckey117/next-apollo-hands-on/pull/1](https://github.com/zuckey117/next-apollo-hands-on/pull/1)
+        - [https://github.com/zuckey117/next-apollo-hands-on/pull/1](https://github.com/zuckey117/next-apollo-hands-on/pull/4)
 
 ### hooks編
 

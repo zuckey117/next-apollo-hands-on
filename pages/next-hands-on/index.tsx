@@ -6,6 +6,13 @@ const Index: FC = () => {
   return (
     <>
       <h2>ハンズオン作成ページリンク</h2>
+      <h3>React Hooks</h3>
+      <p>
+        <Link href="/next-hands-on/use-effect">
+          <a>→useEffect</a>
+        </Link>
+      </p>
+      <h3>Next.js</h3>
       <p>
         <Link href="/next-hands-on/ssr">
           <a>→SSR</a>
